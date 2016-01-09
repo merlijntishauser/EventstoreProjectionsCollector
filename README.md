@@ -1,10 +1,10 @@
 # EventstoreProjectionsCollector
 
-## dependencies
+## Dependencies
 
 Make sure you have python and diamond installed
 
-## running diamond
+## Running diamond
 
 Running diamond with the EventStoreProjectionsCollector in debug mode.
 A very basic diamond config is used for easy debugging of the collector. 
@@ -14,13 +14,11 @@ All paths are relative to the project root.
 diamond --foreground  --log-stdout --skip-pidfile -c ./config/diamond.conf
 ```
 
-## todo
+## Todo
 
-adding tests! 
-adding example output
+* adding tests! 
 
-
-## example output is:
+## Example output
 ```
 servers.erlkoenig.eventstore.projections.participations-per-person.eventsProcessedAfterRestart 10 1452366154
 servers.erlkoenig.eventstore.projections.participations-per-person.bufferedEvents 0 1452366154
