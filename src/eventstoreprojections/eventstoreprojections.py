@@ -58,7 +58,9 @@ class EventstoreProjectionsCollector(diamond.collector.Collector):
                     value = 0
                     yield ("%s.%s" % (prefix, key), value)
                 else:
-                    self.log.debug("ignoring string value = %s", value)
+                    # very chatty, uncomment if you want to see the output
+                    # self.log.debug("ignoring string value = %s", value)
+                    continue
             else:
                 try:
                     int(value)
