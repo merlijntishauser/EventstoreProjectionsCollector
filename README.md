@@ -6,6 +6,8 @@ Name is used for the metric path, status is translated to an integer (running = 
 
 Be aware the author is a python n00b and it's only tested against a single node eventstore. 
 
+Url to be polled should look like: http://hostname:2113/projections/all-non-transient
+
 ## Dependencies
 
 Make sure you have python and diamond installed
