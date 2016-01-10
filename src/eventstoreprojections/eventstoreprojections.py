@@ -38,7 +38,7 @@ class EventstoreProjectionsCollector(diamond.collector.Collector):
         default_config = super(EventstoreProjectionsCollector, self).get_default_config()
         default_config.update({
             'path': 'eventstore',
-            'url': 'http://localhost/stat',
+            'url': 'http://hostname:2113/projections/all-non-transient',
             'headers': {'User-Agent': 'Diamond Eventstore Projections metrics collector'},
         })
         return default_config
@@ -87,7 +87,8 @@ class EventstoreProjectionsCollector(diamond.collector.Collector):
 
                 data = {}
                 for projection in projections:
-                    data[projection["name"]] = projection
+                    dataName = projection["name"].replace("$", "", 1)
+                    data[dataName] = projection
             except ValueError as e:
                 self.log.error("Can't parse JSON object from %s. %s", url, e)
             else:
