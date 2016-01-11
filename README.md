@@ -2,7 +2,8 @@
 
 This collector polls an Eventstore for the status of projections and parses this to flat metrics.
 String values are ignored, except for the name and status. 
-Name is used for the metric path, status is translated to an integer (running = 1, stopped = 0)
+Name is used for the metric path, status is translated to an integer (running = 1, stopped = 0).
+Note: "$" are removed from the projection name to avoid problems with grafana.
 
 Be aware the author is a python n00b and it's only tested against a single node eventstore. 
 
