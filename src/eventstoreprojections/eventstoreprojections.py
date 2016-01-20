@@ -87,7 +87,7 @@ class EventstoreProjectionsCollector(diamond.collector.Collector):
 
                 data = {}
                 for projection in projections:
-                    dataName = projection["name"].replace("$", "", 1)
+                    dataName = projection["name"].replace("$", "_")
                     data[dataName] = projection
             except ValueError as e:
                 self.log.error("Can't parse JSON object from %s. %s", url, e)
