@@ -1,14 +1,13 @@
 # coding=utf-8
 
 """
-A Simple collector which calls the Evenstore API for the status of projections and
-parses this to flat metrics.
-String values are ignored, except for the Key "status". This key can have two values:
-
-    Running -> cast to 1
-    Stopped -> cast to 0
-
-The name of the projections are used in the metrics path.
+A Simple collector which calls the Eventstore API for
+the status of projections and parses this to flat metrics.
+String values are ignored, except for the name and status.
+Name is used for the metric path, status is translated to
+an integer (running = 1, stopped = 0).
+Note: "$" are replaced by underscores (_) in the projection
+name to avoid problems with grafana.
 
 This collector is based upon the HTTPJSONCollector.
 
@@ -26,7 +25,9 @@ import diamond.collector
 class EventstoreProjectionsCollector(diamond.collector.Collector):
 
     def get_default_config_help(self):
-        config_help = super(EventstoreProjectionsCollector, self).get_default_config_help()
+        config_help = super(
+            EventstoreProjectionsCollector, self).get_default_config_help(
+        )
         config_help.update({
             'url': 'Full URL',
             'headers': 'Header variable if needed. '
@@ -35,11 +36,13 @@ class EventstoreProjectionsCollector(diamond.collector.Collector):
         return config_help
 
     def get_default_config(self):
-        default_config = super(EventstoreProjectionsCollector, self).get_default_config()
+        default_config = super(
+            EventstoreProjectionsCollector, self).get_default_config(
+        )
         default_config.update({
             'path': 'eventstore',
             'url': 'http://hostname:2113/projections/all-non-transient',
-            'headers': {'User-Agent': 'Diamond Eventstore Projections metrics collector'},
+            'headers': {'User-Agent': 'Diamond Eventstore metrics collector'},
         })
         return default_config
 
@@ -65,7 +68,7 @@ class EventstoreProjectionsCollector(diamond.collector.Collector):
                 try:
                     int(value)
                 except ValueError:
-                    self.log.debug("typecasting to int failed, value = %s", value)
+                    self.log.debug("cast to int failed, value = %s", value)
                 finally:
                     yield ("%s.%s" % (prefix, key), value)
 
