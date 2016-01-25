@@ -25,7 +25,31 @@ diamond --foreground  --log-stdout --skip-pidfile -c ./config/diamond.conf
 
 ## Todo
 
-[ ] adding tests! 
+[X] add unittests
+[ ] improve unittests (split existing single test into multiple specific tests)
+[ ] add testrunner script
+[ ] add pep8 setup/ini
+
+## Developer hints
+This repository can be used to develop "stand alone" the collector. The code should be copied manually to the python-diamond/Diamond repository.
+You can copy the src/eventstore directory to src/collectors/eventstore.
+
+From the root of the project you can run the unittests:
+
+```
+python test.py 
+```
+
+And quality control tools:
+
+```
+pep8 --config=.pep8 src bin/diamond bin/diamond-setup build_doc.py setup.py test.py
+```
+
+You will need to have pep8 and mock installed by running:
+```
+pip install mock pep8
+```
 
 ## Example output
 ```
