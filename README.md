@@ -1,3 +1,5 @@
+*THIS REPOSITORY WILL BE REMOVED WHEN https://github.com/python-diamond/Diamond/pull/417 IS MERGED*
+
 # EventstoreProjectionsCollector
 
 This collector polls an Eventstore for the status of projections and parses this to flat metrics.
